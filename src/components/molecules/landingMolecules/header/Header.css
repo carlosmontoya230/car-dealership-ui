@@ -1,0 +1,156 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+  background-color: rgba(10, 10, 35, 0.8);
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  margin: 40px auto 0 auto;
+  max-width: 950px;
+  width: 90%;
+  position: static;
+  z-index: 1000;
+  min-height: 80px;
+  height: 80px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 100px;
+  max-height: 130px;
+  margin-right: 16px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient_to_right, #ff6b6b, #f06292;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.nav-menu li {
+  position: relative;
+  margin-left: 0;
+}
+
+.nav-menu li:first-child {
+  margin-left: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, #ffd166, #ff9900);
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.4, 1, 0.7, 1);
+}
+
+.nav-menu a.active::after,
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-menu a.active,
+.nav-menu a:hover {
+  color: #ffd166;
+}
+
+.login-icon a {
+  font-size: 40px;
+  color: #ffd166;
+  margin-left: 0px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.login-icon a:hover {
+  color: #ff9900;
+}
+
+@media (max-width: 900px) {
+  .header-container {
+    max-width: 98vw;
+    width: 98vw;
+    padding: 8px 12px;
+    min-height: 64px;
+    height: auto;
+  }
+  .header-logo {
+    height: 60px;
+    max-height: 80px;
+  }
+  .logo-text {
+    font-size: 18px;
+  }
+  .nav-menu ul {
+    gap: 24px;
+  }
+  .login-icon a {
+    font-size: 28px;
+    padding: 0 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6px 4vw;
+    margin-top: 16px;
+    border-radius: 8px;
+    min-height: 48px;
+  }
+  .logo-section {
+    margin-bottom: 8px;
+  }
+  .header-logo {
+    height: 38px;
+    max-height: 48px;
+    margin-right: 8px;
+  }
+  .logo-text {
+    font-size: 15px;
+  }
+  .nav-menu ul {
+    gap: 12px;
+  }
+  .nav-menu a {
+    font-size: 15px;
+    padding: 3px 0;
+  }
+  .login-icon a {
+    font-size: 22px;
+    padding: 0 2px;
+  }
+}
