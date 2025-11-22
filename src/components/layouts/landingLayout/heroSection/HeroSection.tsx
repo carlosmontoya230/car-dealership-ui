@@ -1,21 +1,33 @@
 import "./HeroSection.css";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  title: string;
+  subtitle: string;
+  image: string;
+  buttonText?: string;
+  onButtonClick?: () => void;
+}
+
+const HeroSection = ({
+  title,
+  subtitle,
+  image,
+  buttonText,
+  onButtonClick,
+}: HeroSectionProps) => {
   return (
-    <section id="inicio" className="hero-section landing-content-width">
+    <section className="hero-section landing-content-width">
       <div className="hero-logo-display">
-        <img
-          src="/src/assets/Logo corporativo2.png"
-          alt="Main SIGAV Logo"
-          className="main-sigav-logo"
-        />
+        <img src={image} alt="Hero" className="main-sigav-logo" />
       </div>
       <div className="hero-content">
-        <h1 className="hero-title">Gestión Vehicular Inteligente</h1>
-        <p className="hero-subtitle">
-          Optimiza tu flota, simplifica alquileres, potencia tu negocio.
-        </p>
-        <button className="hero-button">SOLICITAR DEMO</button>
+        <h1 className="hero-title">{title}</h1>
+        <p className="hero-subtitle">{subtitle}</p>
+        {buttonText && (
+          <button className="hero-button" onClick={onButtonClick}>
+            {buttonText}
+          </button>
+        )}
       </div>
     </section>
   );

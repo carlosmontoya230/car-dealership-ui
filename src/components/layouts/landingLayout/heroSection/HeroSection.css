@@ -11,6 +11,9 @@
   position: relative;
   overflow: hidden;
   gap: 0;
+  height: 600px;
+  min-height: 600px;
+  max-height: 600px;
 }
 
 .hero-section::before {
@@ -36,6 +39,7 @@
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   box-sizing: border-box;
+  padding: 2px;
   animation: border-reveal 2.5s linear infinite;
 }
 
@@ -63,6 +67,7 @@
   max-width: 600px;
   min-width: 0;
   z-index: 2;
+  overflow-y: auto;
 }
 
 .hero-title {

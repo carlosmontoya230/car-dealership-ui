@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
-import { useState } from "react";
 import { BiLogInCircle } from "react-icons/bi";
 
 const navItems = [
@@ -9,9 +9,12 @@ const navItems = [
   { label: "Contacto", href: "#contacto" },
 ];
 
-const Header = () => {
-  const [active, setActive] = useState("#inicio");
+interface HeaderProps {
+  onNavChange: (index: number) => void;
+  activeIndex: number;
+}
 
+const Header = ({ onNavChange, activeIndex }: HeaderProps) => {
   return (
     <header className="header-container">
       <div className="logo-section">
@@ -24,21 +27,24 @@ const Header = () => {
       </div>
       <nav className="nav-menu">
         <ul>
-          {navItems.map((item) => (
+          {navItems.map((item, idx) => (
             <li key={item.href}>
               <a
                 href={item.href}
-                className={active === item.href ? "active" : ""}
-                onClick={() => setActive(item.href)}
+                className={activeIndex === idx ? "active" : ""}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavChange(idx);
+                }}
               >
                 {item.label}
               </a>
             </li>
           ))}
           <li className="login-icon">
-            <a href="#login" aria-label="Login">
+            <Link to="/login" aria-label="Login" title="Iniciar sesión">
               <BiLogInCircle />
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
