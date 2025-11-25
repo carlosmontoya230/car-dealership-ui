@@ -14,7 +14,6 @@ export default function AuthGuard({ children, allowedRoles }: AuthGuardProps) {
     return <Navigate to="/login" replace />;
   }
 
-  // Si quieres proteger por roles:
   if (
     allowedRoles &&
     !roles.some((role: string) => allowedRoles.includes(role))
