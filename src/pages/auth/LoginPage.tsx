@@ -157,6 +157,19 @@ export default function LoginPage() {
             {loading ? <span className="spinner"></span> : "Entrar"}
           </ButtonLanding>
         </Form.Submit>
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <span
+            style={{
+              color: "#4f5ba6",
+              cursor: "pointer",
+              textDecoration: "underline",
+              fontWeight: 500,
+            }}
+            onClick={() => navigate("/reset-password")}
+          >
+            ¿Olvidaste tu contraseña?
+          </span>
+        </div>
       </Form.Root>
     </div>
   );
