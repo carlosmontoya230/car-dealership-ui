@@ -1,4 +1,4 @@
-import "./table.css";
+import "./Table.css";
 import type { TableProps } from "./table.interface";
 
 export default function Table<T>({ columns, data, actions }: TableProps<T>) {
