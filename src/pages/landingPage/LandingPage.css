@@ -19,7 +19,7 @@ html {
       rgba(10, 10, 35, 0.85) 0%,
       rgba(30, 30, 60, 0.7) 100%
     ),
-    url("/src/assets/ImageCompany.png");
+    url("../../assets/ImageCompany.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
