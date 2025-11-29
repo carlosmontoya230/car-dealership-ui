@@ -1,12 +1,13 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import LoginIcon from "@mui/icons-material/Login";
+import PhoneIcon from "@mui/icons-material/Phone";
 import * as Form from "@radix-ui/react-form";
 import * as Toggle from "@radix-ui/react-toggle";
-import LoginIcon from "@mui/icons-material/Login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import httpClient from "../../api/httpClient";
-import "./AuthGlobal.css";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ButtonLanding from "../../components/atoms/buttons/custom/CustomButtonClasic";
+import "./AuthGlobal.css";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +20,12 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState(false);
   const [contrasena, setPassword] = useState("");
   const [mainIcon, setMainIcon] = useState("🐵");
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  // Regex internacional
+  const phoneRegex = /^\+\d{1,3}\d{7,14}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function handlePasswordBlur() {
     setMainIcon("🐵");
@@ -28,12 +35,42 @@ export default function RegisterPage() {
     setMainIcon(showPassword ? "🙊" : "🙈");
   }
 
+  function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setEmail(value);
+    if (!emailRegex.test(value)) {
+      setEmailError("Correo inválido");
+    } else {
+      setEmailError("");
+    }
+  }
+
+  function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setPhone(value);
+    if (!phoneRegex.test(value)) {
+      setPhoneError("Formato internacional requerido: +573001234567");
+    } else {
+      setPhoneError("");
+    }
+  }
+
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setError("");
+    if (!emailRegex.test(email)) {
+      setEmailError("Correo inválido");
+      setLoading(false);
+      return;
+    }
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Formato internacional requerido: +573001234567");
+      setLoading(false);
+      return;
+    }
     try {
       await httpClient.post("/users/create-user", {
         name,
@@ -125,6 +162,7 @@ export default function RegisterPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={loading}
+              onFocus={handlePasswordBlur}
             />
           </Form.Control>
         </Form.Field>
@@ -136,11 +174,26 @@ export default function RegisterPage() {
               name="email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               disabled={loading}
               onFocus={handlePasswordBlur}
+              style={{
+                borderColor: emailError ? "#d32f2f" : undefined,
+              }}
             />
           </Form.Control>
+          <div
+            style={{
+              color: "#d32f2f",
+              fontSize: "0.95rem",
+              marginTop: "0.3rem",
+              minHeight: "1.2em",
+              transition: "opacity 0.2s",
+              opacity: emailError ? 1 : 0,
+            }}
+          >
+            {emailError}
+          </div>
         </Form.Field>
         <Form.Field name="password" className="form-field">
           <Form.Label>Contraseña</Form.Label>
@@ -176,7 +229,7 @@ export default function RegisterPage() {
             </Toggle.Root>
           </div>
         </Form.Field>
-        <Form.Field name="phone" className="form-field">
+        <Form.Field name="phone" className="form-field phone-field">
           <Form.Label>Teléfono</Form.Label>
           <Form.Control asChild>
             <input
@@ -184,10 +237,31 @@ export default function RegisterPage() {
               name="phone"
               required
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               disabled={loading}
+              onFocus={handlePasswordBlur}
+              placeholder="+573001234567"
+              className="input-phone"
+              style={{
+                borderColor: phoneError ? "#d32f2f" : undefined,
+              }}
             />
           </Form.Control>
+          <span className="phone-icon">
+            <PhoneIcon style={{ fontSize: 20 }} />
+          </span>
+          <div
+            style={{
+              color: "#d32f2f",
+              fontSize: "0.95rem",
+              marginTop: "0.3rem",
+              minHeight: "1.2em",
+              transition: "opacity 0.2s",
+              opacity: phoneError ? 1 : 0,
+            }}
+          >
+            {phoneError}
+          </div>
         </Form.Field>
         <Form.Field name="address" className="form-field">
           <Form.Label>Dirección</Form.Label>
@@ -199,6 +273,7 @@ export default function RegisterPage() {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               disabled={loading}
+              onFocus={handlePasswordBlur}
             />
           </Form.Control>
         </Form.Field>
@@ -208,7 +283,14 @@ export default function RegisterPage() {
             className="btn login-btn"
             type="submit"
             disabled={
-              loading || !email || !contrasena || !name || !phone || !address
+              loading ||
+              !email ||
+              !contrasena ||
+              !name ||
+              !phone ||
+              !address ||
+              !!emailError ||
+              !!phoneError
             }
           >
             {loading ? <span className="spinner"></span> : "Registrarse"}

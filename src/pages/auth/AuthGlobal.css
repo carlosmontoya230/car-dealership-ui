@@ -202,3 +202,24 @@
     transform: translateY(-20px);
   }
 }
+
+.phone-field {
+  position: relative;
+}
+
+.input-phone {
+  padding-left: 2.2rem !important;
+  height: 2.3rem !important;
+}
+
+.phone-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4f5ba6;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  height: 2.3rem;
+}

@@ -21,32 +21,14 @@ const sidebarItems = [
     label: "Vehiculos",
     path: "/vehicles",
     icon: <span>🚗</span>,
-    allowedRoles: ["admin", "Administrativo", "Verificador"],
+    allowedRoles: ["admin", "Administrativo"],
   },
-  //   {
-  //     label: "Responsables",
-  //     path: "/responsible",
-  //     icon: <span>👨‍🏭</span>,
-  //     allowedRoles: ["admin", "Validador", "Verificador"],
-  //   },
-  //   {
-  //     label: "Fuente",
-  //     path: "/source",
-  //     icon: <span>🖊️</span>,
-  //     allowedRoles: ["admin", "Validador"],
-  //   },
-  //   {
-  //     label: "Resultados",
-  //     path: "/results",
-  //     icon: <span>💫</span>,
-  //     allowedRoles: ["admin", "Verificador"],
-  //   },
-  //   {
-  //     label: "Representación Visual",
-  //     path: "/visual-representation",
-  //     icon: <span>👁️</span>,
-  //     allowedRoles: ["admin", "Validador", "Verificador"],
-  //   },
+  {
+    label: "Reservas",
+    path: "/booking",
+    icon: <span>⏰</span>,
+    allowedRoles: ["admin", "Administrativo", "standard"],
+  },
 ];
 
 export default function DashboardLayout({
