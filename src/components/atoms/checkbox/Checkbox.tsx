@@ -1,6 +1,6 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
-import "./checkbox.css";
+import "./Checkbox.css";
 
 export interface CheckboxOption {
   label: string;
