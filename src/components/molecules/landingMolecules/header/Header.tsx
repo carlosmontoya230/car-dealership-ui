@@ -19,7 +19,7 @@ const Header = ({ onNavChange, activeIndex }: HeaderProps) => {
     <header className="header-container">
       <div className="logo-section">
         <img
-          src="/src/assets/LogoCarDealerNotBatckground.png"
+          src="../../../../assets/LogoCarDealerNotBatckground.png"
           alt="SIGAV Logo"
           className="header-logo"
         />

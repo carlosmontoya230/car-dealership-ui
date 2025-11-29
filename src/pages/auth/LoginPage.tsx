@@ -77,7 +77,7 @@ export default function LoginPage() {
             }}
           >
             <img
-              src={"/src/assets/LogoCarDealer.png"}
+              src={"../../assets/LogoCarDealer.png"}
               alt="Logo compañía"
               style={{ width: 48, height: 48, borderRadius: "50%" }}
             />

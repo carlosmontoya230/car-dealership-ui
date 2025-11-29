@@ -38,7 +38,7 @@ export default function SidebarUnix({
       <aside className={`sidebar-unix${open ? " open" : " closed"}`}>
         <div className="sidebar-title-with-logo">
           <img
-            src={"/src/assets/Logo corporativo claro.png"}
+            src={"../../../assets/Logo corporativo claro.png"}
             alt="Logo app"
             className="sidebar-app-logo"
             title="Ir a la página principal"

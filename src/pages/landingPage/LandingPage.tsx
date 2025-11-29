@@ -37,7 +37,7 @@ export default function LandingPage() {
       key="inicio"
       title="Gestión Vehicular Inteligente"
       subtitle="Optimiza tu flota, simplifica alquileres, potencia tu negocio."
-      image="/src/assets/Logo corporativo2.png"
+      image="../../assets/Logo corporativo2.png"
       buttonText="SOLICITAR DEMO"
     />,
     <FeatureSection key="caracteristicas" />,
