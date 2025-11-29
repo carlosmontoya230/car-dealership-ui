@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import "./sidebar.css";
+import "./Sidebar.css";
 import { useEffect, useState } from "react";
 import type { SidebarProps } from "./sidebar.interface";
 
